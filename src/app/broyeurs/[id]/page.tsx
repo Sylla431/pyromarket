@@ -19,7 +19,7 @@ export default async function BroyeurPage({ params }: PageProps<"/broyeurs/[id]"
       <div className="flex flex-wrap gap-2">
         {b.disponible ? <Pill tone="mint">Disponible</Pill> : <Pill>Complet pour le moment</Pill>}
         <Pill>
-          <IconPin size={12} /> {b.localisation} ({b.departement})
+          <IconPin size={12} /> {b.localisation}
         </Pill>
       </div>
 

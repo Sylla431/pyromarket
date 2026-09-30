@@ -18,10 +18,10 @@ export function AnnonceCard({ annonce: a }: { annonce: AnnonceMock }) {
           {a.sens === "achat" && <Pill tone="teal">Recherche</Pill>}
         </div>
         <p className="mt-1 flex items-center gap-1 text-sm text-muted">
-          <IconPin size={14} /> {a.localisation} ({a.departement}) · {a.qualite}
+          <IconPin size={14} /> {a.localisation} · {a.qualite}
         </p>
-        <div className="mt-3 flex items-end justify-between gap-3">
-          <p className="font-mono text-[15px] text-foreground">
+        <div className="mt-3 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
+          <p className="font-mono text-[15px] whitespace-nowrap text-foreground">
             {formatKg(a.quantiteKg)}
             <span className="mx-2 text-line">|</span>
             <span className="text-accent">

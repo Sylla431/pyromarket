@@ -16,21 +16,35 @@ export function resine(code: number) {
   return RESINES.find((r) => r.code === code) ?? RESINES[6];
 }
 
-// Lancement régional : Auvergne-Rhône-Alpes.
-export const DEPARTEMENTS = [
-  { code: "01", nom: "Ain" },
-  { code: "03", nom: "Allier" },
-  { code: "07", nom: "Ardèche" },
-  { code: "15", nom: "Cantal" },
-  { code: "26", nom: "Drôme" },
-  { code: "38", nom: "Isère" },
-  { code: "42", nom: "Loire" },
-  { code: "43", nom: "Haute-Loire" },
-  { code: "63", nom: "Puy-de-Dôme" },
-  { code: "69", nom: "Rhône" },
-  { code: "73", nom: "Savoie" },
-  { code: "74", nom: "Haute-Savoie" },
+// Lancement au Mali : les 19 régions et le district de Bamako (réforme 2023).
+export const REGIONS = [
+  { code: "bamako", nom: "District de Bamako" },
+  { code: "bandiagara", nom: "Bandiagara" },
+  { code: "bougouni", nom: "Bougouni" },
+  { code: "dioila", nom: "Dioïla" },
+  { code: "douentza", nom: "Douentza" },
+  { code: "gao", nom: "Gao" },
+  { code: "kayes", nom: "Kayes" },
+  { code: "kidal", nom: "Kidal" },
+  { code: "kita", nom: "Kita" },
+  { code: "koulikoro", nom: "Koulikoro" },
+  { code: "koutiala", nom: "Koutiala" },
+  { code: "menaka", nom: "Ménaka" },
+  { code: "mopti", nom: "Mopti" },
+  { code: "nara", nom: "Nara" },
+  { code: "nioro", nom: "Nioro du Sahel" },
+  { code: "san", nom: "San" },
+  { code: "segou", nom: "Ségou" },
+  { code: "sikasso", nom: "Sikasso" },
+  { code: "taoudenit", nom: "Taoudénit" },
+  { code: "tombouctou", nom: "Tombouctou" },
 ] as const;
+
+export const REGION_CODES = REGIONS.map((r) => r.code) as string[];
+
+export function regionNom(code: string) {
+  return REGIONS.find((r) => r.code === code)?.nom ?? code;
+}
 
 export function formatKg(kg: number) {
   return kg >= 1000

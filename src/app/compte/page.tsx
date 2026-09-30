@@ -85,10 +85,10 @@ export default async function ComptePage() {
         <Card className="divide-y divide-line">
           <div className="flex items-center justify-between gap-3 p-4">
             <div>
-              <p className="text-sm text-subtle">SIRET</p>
-              <p className="font-mono text-foreground">{profil.siret || "—"}</p>
+              <p className="text-sm text-subtle">RCCM</p>
+              <p className="font-mono text-foreground">{profil.rccm || "—"}</p>
             </div>
-            {profil.siretVerifie ? (
+            {profil.rccmVerifie ? (
               <Pill tone="mint">
                 <IconShield size={14} /> Vérifié
               </Pill>
@@ -98,7 +98,7 @@ export default async function ComptePage() {
           </div>
           <div className="flex items-center justify-between gap-3 p-4">
             <div>
-              <p className="text-sm text-subtle">Agrément préfectoral</p>
+              <p className="text-sm text-subtle">Autorisation environnementale</p>
               <p className="text-foreground">{profil.agrement}</p>
             </div>
           </div>

@@ -1,4 +1,9 @@
 import { z } from "zod";
+import { REGION_CODES } from "./resines";
+
+const region = z
+  .string()
+  .refine((v) => REGION_CODES.includes(v), "Choisissez une région");
 
 const optionalText = z
   .string()
@@ -14,7 +19,7 @@ export const annonceSchema = z.object({
   qualite: optionalText,
   prixXof: z.coerce.number().int("Le prix en F CFA est un nombre entier").nonnegative("Le prix ne peut pas être négatif").optional(),
   localisation: z.string().trim().min(2, "Indiquez la ville"),
-  departement: z.string().length(2, "Choisissez un département"),
+  region,
   description: optionalText,
 });
 
@@ -25,10 +30,15 @@ export const inscriptionSchema = z.object({
   password: z.string().min(8, "Le mot de passe doit faire au moins 8 caractères"),
   nom: z.string().trim().min(2, "Indiquez votre nom"),
   entreprise: z.string().trim().min(2, "Indiquez le nom de votre entreprise"),
-  siret: z
+  // Registre du commerce et du crédit mobilier, ex. MA.BKO.2021.B.4817
+  rccm: z
     .string()
-    .transform((v) => v.replace(/\s/g, ""))
-    .pipe(z.string().regex(/^\d{14}$/, "Le SIRET compte 14 chiffres")),
+    .transform((v) => v.replace(/\s/g, "").toUpperCase())
+    .pipe(
+      z
+        .string()
+        .regex(/^MA\.[A-Z]{3}\.\d{4}\.[A-Z]\.\d{1,6}$/, "Format RCCM attendu : MA.BKO.2021.B.4817"),
+    ),
   zone_activite: optionalText,
   agrement: optionalText,
   roles: z
@@ -46,7 +56,7 @@ export const profilBroyeurSchema = z.object({
   type_broyeur: z.string().trim().min(2, "Indiquez le type de broyeur"),
   capacite_kg_h: z.coerce.number().int().positive("Capacité invalide").optional(),
   localisation: z.string().trim().min(2, "Indiquez la ville"),
-  departement: z.string().length(2, "Choisissez un département"),
+  region,
   tarif_indicatif: z.coerce.number().int("Le tarif en F CFA est un nombre entier").nonnegative().optional(),
   matieres: z.array(z.coerce.number().int().min(1).max(7)).min(1, "Choisissez au moins une matière"),
   disponible: z.boolean(),
@@ -54,7 +64,7 @@ export const profilBroyeurSchema = z.object({
 });
 
 export const profilTransporteurSchema = z.object({
-  departements: z.array(z.string().length(2)).min(1, "Choisissez au moins un département"),
+  regions: z.array(region).min(1, "Choisissez au moins une région"),
   type_remorque: z.string().trim().min(2, "Indiquez le type de remorque"),
   capacite_m3: z.coerce.number().int().positive("Volume invalide").optional(),
   tonnage_t: z.coerce.number().positive("Tonnage invalide").optional(),

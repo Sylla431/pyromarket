@@ -20,7 +20,7 @@ export default function Home() {
     <div className="space-y-10">
       <section>
         <p className="text-xs font-semibold tracking-[0.12em] text-teal uppercase">
-          Auvergne-Rhône-Alpes
+          Mali
         </p>
         <h1 className="font-wide mt-2 text-[28px] leading-[1.1] font-bold text-foreground sm:text-4xl">
           Quel plastique cherchez-vous&nbsp;?

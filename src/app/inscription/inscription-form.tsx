@@ -46,16 +46,19 @@ export function InscriptionForm() {
         <Field label="Raison sociale">
           <Input name="entreprise" required autoComplete="organization" />
         </Field>
-        <Field label="SIRET" hint="14 chiffres. Nous le vérifions avant d'afficher le badge « Entreprise vérifiée ».">
-          <Input name="siret" required inputMode="numeric" placeholder="852 147 963 00018" className="font-mono" />
+        <Field
+          label="N° RCCM"
+          hint="Registre du commerce. Nous le vérifions avant d'afficher le badge « Entreprise vérifiée »."
+        >
+          <Input name="rccm" required autoCapitalize="characters" placeholder="MA.BKO.2021.B.4817" className="font-mono" />
         </Field>
         <Field label="Zone d'activité">
-          <Input name="zone_activite" placeholder="Rhône, Loire…" />
+          <Input name="zone_activite" placeholder="District de Bamako, Koulikoro…" />
         </Field>
         {vendeur && (
           <Field
-            label="N° d'agrément préfectoral (déchets)"
-            hint="Requis pour la collecte ou la vente de déchets plastiques. Vous pourrez l'ajouter plus tard."
+            label="N° d'autorisation environnementale (déchets)"
+            hint="Pour la collecte ou la vente de déchets plastiques. Vous pourrez l'ajouter plus tard."
           >
             <Input name="agrement" />
           </Field>

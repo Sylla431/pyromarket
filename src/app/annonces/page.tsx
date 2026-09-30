@@ -5,7 +5,7 @@ import { Field, Input, Select } from "@/components/field";
 import { IconSearch, IconSliders } from "@/components/icons";
 import { EmptyState, PageHeader, Segmented } from "@/components/ui";
 import { mockAnnonces } from "@/lib/mock-data";
-import { DEPARTEMENTS, RESINES } from "@/lib/resines";
+import { REGIONS, RESINES } from "@/lib/resines";
 
 function str(v: string | string[] | undefined) {
   return typeof v === "string" ? v : "";
@@ -16,7 +16,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
   const q = str(params.q).toLowerCase();
   const resine = Number(str(params.resine)) || 0;
   const sens = str(params.sens) === "achat" ? "achat" : "vente";
-  const dep = str(params.dep);
+  const region = str(params.region);
   const qmin = Number(str(params.qmin)) || 0;
   const pmax = Number(str(params.pmax)) || 0;
 
@@ -25,7 +25,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
       a.statut === "publiee" &&
       a.sens === sens &&
       (!resine || a.resine === resine) &&
-      (!dep || a.departement === dep) &&
+      (!region || a.region === region) &&
       (!qmin || a.quantiteKg >= qmin * 1000) &&
       (!pmax || (a.prixXof !== null && a.prixXof <= pmax)) &&
       (!q ||
@@ -36,7 +36,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
   // Construit une URL en conservant les autres filtres.
   const href = (patch: Record<string, string | number | undefined>) => {
     const next = new URLSearchParams();
-    const merged = { q: str(params.q), resine: resine || "", sens, dep, qmin: qmin || "", pmax: pmax || "", ...patch };
+    const merged = { q: str(params.q), resine: resine || "", sens, region, qmin: qmin || "", pmax: pmax || "", ...patch };
     for (const [k, v] of Object.entries(merged)) {
       if (v !== "" && v !== undefined && v !== 0) next.set(k, String(v));
     }
@@ -44,7 +44,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
     return s ? `/annonces?${s}` : "/annonces";
   };
 
-  const filtresActifs = [dep, qmin, pmax].filter(Boolean).length;
+  const filtresActifs = [region, qmin, pmax].filter(Boolean).length;
 
   return (
     <div>
@@ -52,9 +52,11 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
         title="Marché du plastique"
         subtitle="Toutes catégories de plastique acceptées."
         action={
-          <ButtonLink href="/annonces/nouvelle" size="sm" className="hidden sm:inline-flex">
-            Publier une annonce
-          </ButtonLink>
+          <div className="hidden sm:block">
+            <ButtonLink href="/annonces/nouvelle" size="sm">
+              Publier une annonce
+            </ButtonLink>
+          </div>
         }
       />
 
@@ -126,12 +128,12 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
           <input type="hidden" name="sens" value={sens} />
           {resine > 0 && <input type="hidden" name="resine" value={resine} />}
           {params.q && <input type="hidden" name="q" value={str(params.q)} />}
-          <Field label="Département">
-            <Select name="dep" defaultValue={dep}>
-              <option value="">Toute la région</option>
-              {DEPARTEMENTS.map((d) => (
+          <Field label="Région">
+            <Select name="region" defaultValue={region}>
+              <option value="">Tout le Mali</option>
+              {REGIONS.map((d) => (
                 <option key={d.code} value={d.code}>
-                  {d.code} · {d.nom}
+                  {d.nom}
                 </option>
               ))}
             </Select>
@@ -146,7 +148,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
             <button type="submit" className={buttonClass("primary", "md", "flex-1 sm:flex-none")}>
               Appliquer
             </button>
-            <Link href={href({ dep: "", qmin: "", pmax: "" })} className={buttonClass("ghost", "md")}>
+            <Link href={href({ region: "", qmin: "", pmax: "" })} className={buttonClass("ghost", "md")}>
               Effacer
             </Link>
           </div>

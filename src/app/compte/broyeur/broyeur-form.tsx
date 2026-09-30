@@ -7,14 +7,14 @@ import { FormStatus } from "@/components/form-status";
 import { ResinBadge } from "@/components/resin-badge";
 import { StickyActions } from "@/components/ui";
 import { enregistrerBroyeur, type FormState } from "@/lib/profil-actions";
-import { DEPARTEMENTS, RESINES } from "@/lib/resines";
+import { REGIONS, RESINES } from "@/lib/resines";
 
 export function BroyeurForm() {
   const [state, action, pending] = useActionState(enregistrerBroyeur, {} as FormState);
   return (
     <form action={action} className="space-y-6">
       <Field label="Nom affiché">
-        <Input name="entreprise" required placeholder="Broyage Rhône" />
+        <Input name="entreprise" required placeholder="Atelier Broyage Sotuba" />
       </Field>
       <Field label="Type de broyeur">
         <Input name="type_broyeur" required placeholder="Mono-arbre 30 kW, granulateur…" />
@@ -31,14 +31,14 @@ export function BroyeurForm() {
         <Field label="Ville">
           <Input name="localisation" required />
         </Field>
-        <Field label="Département">
-          <Select name="departement" required defaultValue="">
+        <Field label="Région">
+          <Select name="region" required defaultValue="">
             <option value="" disabled>
               —
             </option>
-            {DEPARTEMENTS.map((d) => (
+            {REGIONS.map((d) => (
               <option key={d.code} value={d.code}>
-                {d.code} · {d.nom}
+                {d.nom}
               </option>
             ))}
           </Select>

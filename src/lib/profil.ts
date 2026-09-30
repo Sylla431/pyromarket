@@ -5,10 +5,10 @@ import { getUserId, supabaseConfigure } from "./supabase/session";
 export type ProfilVue = {
   nom: string;
   entreprise: string;
-  siret: string;
+  rccm: string;
   zoneActivite: string;
   roles: string[];
-  siretVerifie: boolean;
+  rccmVerifie: boolean;
   agrement: string;
 };
 
@@ -23,7 +23,7 @@ export async function getProfil(): Promise<{ mode: "demo" | "connecte"; profil: 
   const supabase = await createClient();
   const { data } = await supabase
     .from("profiles")
-    .select("nom, entreprise, siret, zone_activite, roles, siret_verifie, agrement")
+    .select("nom, entreprise, rccm, zone_activite, roles, rccm_verifie, agrement")
     .eq("id", id)
     .single();
 
@@ -32,10 +32,10 @@ export async function getProfil(): Promise<{ mode: "demo" | "connecte"; profil: 
     profil: {
       nom: data?.nom ?? "",
       entreprise: data?.entreprise ?? "",
-      siret: data?.siret ?? "",
+      rccm: data?.rccm ?? "",
       zoneActivite: data?.zone_activite ?? "",
       roles: data?.roles ?? [],
-      siretVerifie: data?.siret_verifie ?? false,
+      rccmVerifie: data?.rccm_verifie ?? false,
       agrement: data?.agrement ?? "Non renseigné",
     },
   };

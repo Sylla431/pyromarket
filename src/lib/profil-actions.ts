@@ -19,7 +19,7 @@ export async function enregistrerBroyeur(_prev: FormState, formData: FormData): 
     type_broyeur: field(formData, "type_broyeur"),
     capacite_kg_h: field(formData, "capacite_kg_h"),
     localisation: field(formData, "localisation"),
-    departement: field(formData, "departement"),
+    region: field(formData, "region"),
     tarif_indicatif: field(formData, "tarif_indicatif"),
     matieres: formData.getAll("matieres"),
     disponible: formData.get("disponible") === "on",
@@ -42,7 +42,7 @@ export async function enregistrerBroyeur(_prev: FormState, formData: FormData): 
 
 export async function enregistrerTransporteur(_prev: FormState, formData: FormData): Promise<FormState> {
   const parsed = profilTransporteurSchema.safeParse({
-    departements: formData.getAll("departements"),
+    regions: formData.getAll("regions"),
     type_remorque: field(formData, "type_remorque"),
     capacite_m3: field(formData, "capacite_m3"),
     tonnage_t: field(formData, "tonnage_t"),

@@ -54,7 +54,7 @@ export default async function AnnoncePage({ params }: PageProps<"/annonces/[id]"
             label="Localisation"
             value={
               <span className="flex items-center gap-1 font-sans">
-                <IconPin size={14} /> {a.localisation} ({a.departement})
+                <IconPin size={14} /> {a.localisation}
               </span>
             }
           />

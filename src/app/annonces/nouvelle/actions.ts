@@ -19,7 +19,7 @@ export async function createAnnonce(
     qualite: field(formData, "qualite"),
     prixXof: field(formData, "prixXof"),
     localisation: field(formData, "localisation"),
-    departement: field(formData, "departement"),
+    region: field(formData, "region"),
     description: field(formData, "description"),
   });
 
@@ -45,7 +45,7 @@ export async function createAnnonce(
     qualite: d.qualite,
     prix_xof: d.prixXof,
     localisation: d.localisation,
-    departement: d.departement,
+    region: d.region,
     description: d.description,
   });
 

@@ -28,7 +28,7 @@ export async function inscription(_prev: AuthState, formData: FormData): Promise
     password: formData.get("password"),
     nom: field(formData, "nom"),
     entreprise: field(formData, "entreprise"),
-    siret: field(formData, "siret") ?? "",
+    rccm: field(formData, "rccm") ?? "",
     zone_activite: field(formData, "zone_activite"),
     agrement: field(formData, "agrement"),
     roles: formData.getAll("roles"),

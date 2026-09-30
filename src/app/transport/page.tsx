@@ -5,7 +5,7 @@ import { IconChat, IconTruck } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
 import { Card, EmptyState, PageHeader, Pill, Segmented, Stat } from "@/components/ui";
 import { mockAnnonces, mockCourses, mockTransporteurs, type CourseMock } from "@/lib/mock-data";
-import { DEPARTEMENTS, formatKg, formatXof } from "@/lib/resines";
+import { REGIONS, formatKg, formatXof } from "@/lib/resines";
 
 const STATUTS: Record<CourseMock["statut"], { label: string; tone: "coral" | "teal" | "mint" | "muted" }> = {
   en_attente: { label: "En attente", tone: "coral" },
@@ -22,10 +22,10 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
   const params = await searchParams;
   const vue = str(params.vue) === "courses" ? "courses" : "transporteurs";
   const annonce = mockAnnonces.find((a) => a.id === str(params.annonce));
-  const dep = str(params.dep) || annonce?.departement || "";
+  const region = str(params.region) || annonce?.region || "";
 
   const transporteurs = mockTransporteurs
-    .filter((t) => !dep || t.departements.includes(dep))
+    .filter((t) => !region || t.regions.includes(region))
     .sort((a, b) => Number(b.disponible) - Number(a.disponible));
 
   return (
@@ -61,12 +61,12 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
           <form action="/transport" className="mt-4 flex gap-2">
             {annonce && <input type="hidden" name="annonce" value={annonce.id} />}
             <label className="flex-1">
-              <span className="sr-only">Département de chargement</span>
-              <Select name="dep" defaultValue={dep} className="mt-0">
-                <option value="">Tous les départements</option>
-                {DEPARTEMENTS.map((d) => (
+              <span className="sr-only">Région de chargement</span>
+              <Select name="region" defaultValue={region} className="mt-0">
+                <option value="">Toutes les régions</option>
+                {REGIONS.map((d) => (
                   <option key={d.code} value={d.code}>
-                    Chargement en {d.code} · {d.nom}
+                    Chargement : {d.nom}
                   </option>
                 ))}
               </Select>
@@ -92,8 +92,10 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
                       <p className="mt-0.5 text-sm text-muted">{t.zone}</p>
                     </div>
                   </div>
-                  <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-line pt-4">
-                    <Stat label="Remorque" value={<span className="font-sans text-sm">{t.remorque.split(" ").slice(0, 2).join(" ")}</span>} />
+                  <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-line pt-4">
+                    <div className="col-span-2">
+                      <Stat label="Remorque" value={<span className="font-sans">{t.remorque}</span>} />
+                    </div>
                     <Stat label="Volume" value={`${t.capaciteM3} m³`} />
                     <Stat label="Charge" value={`${t.tonnageT} t`} />
                   </dl>
@@ -110,8 +112,8 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
               </li>
             ))}
             {transporteurs.length === 0 && (
-              <EmptyState title="Aucun transporteur sur ce département">
-                Élargissez la recherche à toute la région.
+              <EmptyState title="Aucun transporteur dans cette région">
+                Élargissez la recherche à tout le Mali.
               </EmptyState>
             )}
           </ul>

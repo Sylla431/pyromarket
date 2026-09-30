@@ -5,7 +5,7 @@ import { Button } from "@/components/button";
 import { ChoiceChip, Field, FormError, Input, Select, Textarea } from "@/components/field";
 import { ResinBadge } from "@/components/resin-badge";
 import { StickyActions } from "@/components/ui";
-import { DEPARTEMENTS, RESINES } from "@/lib/resines";
+import { REGIONS, RESINES } from "@/lib/resines";
 import { createAnnonce, type CreateAnnonceState } from "./actions";
 
 const initialState: CreateAnnonceState = {};
@@ -75,16 +75,16 @@ export function AnnonceForm() {
       <Step n={3} title="Lieu d'enlèvement">
         <div className="grid grid-cols-[1fr_auto] gap-3 sm:grid-cols-2">
           <Field label="Ville">
-            <Input name="localisation" required placeholder="Lyon" autoComplete="address-level2" />
+            <Input name="localisation" required placeholder="Bamako" autoComplete="address-level2" />
           </Field>
-          <Field label="Département">
-            <Select name="departement" required defaultValue="">
+          <Field label="Région">
+            <Select name="region" required defaultValue="">
               <option value="" disabled>
                 —
               </option>
-              {DEPARTEMENTS.map((d) => (
+              {REGIONS.map((d) => (
                 <option key={d.code} value={d.code}>
-                  {d.code} · {d.nom}
+                  {d.nom}
                 </option>
               ))}
             </Select>

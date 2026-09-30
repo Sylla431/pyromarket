@@ -10,7 +10,7 @@ const MOTIFS = [
   "Annonce frauduleuse ou arnaque",
   "Photos sans rapport avec la matière",
   "Prix ou quantité incohérents",
-  "Agrément ou SIRET douteux",
+  "Autorisation ou RCCM douteux",
   "Autre",
 ];
 

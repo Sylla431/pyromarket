@@ -7,7 +7,7 @@ import { Toggle } from "@/components/demo-actions";
 import { IconBell } from "@/components/icons";
 import { Card } from "@/components/ui";
 import { mockAlertes } from "@/lib/mock-data";
-import { DEPARTEMENTS, RESINES, resine } from "@/lib/resines";
+import { REGIONS, RESINES, resine } from "@/lib/resines";
 
 export function Alertes() {
   const [alertes, setAlertes] = useState(mockAlertes);
@@ -15,12 +15,12 @@ export function Alertes() {
 
   function creer(formData: FormData) {
     const r = Number(formData.get("resine"));
-    const d = String(formData.get("dep") ?? "");
-    const dep = DEPARTEMENTS.find((x) => x.code === d);
+    const d = String(formData.get("region") ?? "");
+    const region = REGIONS.find((x) => x.code === d);
     setAlertes((a) => [
       {
         id: crypto.randomUUID(),
-        libelle: `${r ? resine(r).sigle : "Toutes résines"} · ${dep ? dep.nom : "Toute la région"}`,
+        libelle: `${r ? resine(r).sigle : "Toutes résines"} · ${region ? region.nom : "Tout le Mali"}`,
         detail: "Toutes quantités",
         active: true,
       },
@@ -44,12 +44,12 @@ export function Alertes() {
                 ))}
               </Select>
             </Field>
-            <Field label="Département">
-              <Select name="dep" defaultValue="">
-                <option value="">Toute la région</option>
-                {DEPARTEMENTS.map((d) => (
+            <Field label="Région">
+              <Select name="region" defaultValue="">
+                <option value="">Tout le Mali</option>
+                {REGIONS.map((d) => (
                   <option key={d.code} value={d.code}>
-                    {d.code} · {d.nom}
+                    {d.nom}
                   </option>
                 ))}
               </Select>
