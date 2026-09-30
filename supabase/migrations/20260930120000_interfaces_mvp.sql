@@ -1,29 +1,36 @@
 -- Champs nécessaires aux écrans du MVP (cahier des charges).
+-- Réexécutable : chaque instruction vérifie si l'objet existe déjà.
 
-create type public.annonce_sens as enum ('vente', 'achat');
+do $$
+begin
+  create type public.annonce_sens as enum ('vente', 'achat');
+exception when duplicate_object then null;
+end;
+$$;
 
 alter table public.annonces
-  add column sens        public.annonce_sens not null default 'vente',
-  add column resine      smallint check (resine between 1 and 7),
-  add column departement text,
-  add column description text;
+  add column if not exists sens        public.annonce_sens not null default 'vente',
+  add column if not exists resine      smallint check (resine between 1 and 7),
+  add column if not exists departement text,
+  add column if not exists description text;
 
-create index annonces_filtres_idx on public.annonces (statut, sens, resine, departement);
+create index if not exists annonces_filtres_idx
+  on public.annonces (statut, sens, resine, departement);
 
 -- Agrément préfectoral (vendeurs de déchets) et suivi des vérifications.
 alter table public.profiles
-  add column agrement      text,
-  add column siret_verifie boolean not null default false;
+  add column if not exists agrement      text,
+  add column if not exists siret_verifie boolean not null default false;
 
 -- Matières traitées par un broyeur (codes résine).
 alter table public.profils_broyeur
-  add column entreprise  text,
-  add column departement text,
-  add column matieres    smallint[] not null default '{}',
-  add column description text;
+  add column if not exists entreprise  text,
+  add column if not exists departement text,
+  add column if not exists matieres    smallint[] not null default '{}',
+  add column if not exists description text;
 
 -- Profil transporteur (module Transport).
-create table public.profils_transporteur (
+create table if not exists public.profils_transporteur (
   id              uuid primary key default gen_random_uuid(),
   user_id         uuid not null unique references public.profiles (id) on delete cascade,
   departements    text[] not null default '{}',
@@ -36,13 +43,17 @@ create table public.profils_transporteur (
 
 alter table public.profils_transporteur enable row level security;
 
+drop policy if exists "profils_transporteur_select" on public.profils_transporteur;
 create policy "profils_transporteur_select" on public.profils_transporteur
   for select to anon, authenticated using (true);
+drop policy if exists "profils_transporteur_insert_own" on public.profils_transporteur;
 create policy "profils_transporteur_insert_own" on public.profils_transporteur
   for insert to authenticated with check ((select auth.uid()) = user_id);
+drop policy if exists "profils_transporteur_update_own" on public.profils_transporteur;
 create policy "profils_transporteur_update_own" on public.profils_transporteur
   for update to authenticated
   using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+drop policy if exists "profils_transporteur_delete_own" on public.profils_transporteur;
 create policy "profils_transporteur_delete_own" on public.profils_transporteur
   for delete to authenticated using ((select auth.uid()) = user_id);
 
@@ -78,9 +89,14 @@ end;
 $$;
 
 -- Signalements (bouton « Signaler » sur les annonces et profils).
-create type public.signalement_statut as enum ('a_traiter', 'valide', 'suspendu', 'complement_demande');
+do $$
+begin
+  create type public.signalement_statut as enum ('a_traiter', 'valide', 'suspendu', 'complement_demande');
+exception when duplicate_object then null;
+end;
+$$;
 
-create table public.signalements (
+create table if not exists public.signalements (
   id         uuid primary key default gen_random_uuid(),
   auteur_id  uuid not null references public.profiles (id) on delete cascade,
   cible_type text not null check (cible_type in ('annonce', 'profil')),
@@ -95,8 +111,10 @@ alter table public.signalements enable row level security;
 
 -- Chacun peut signaler et relire ses propres signalements ; le traitement se
 -- fait côté modération (clé secrète, hors RLS).
+drop policy if exists "signalements_insert_own" on public.signalements;
 create policy "signalements_insert_own" on public.signalements
   for insert to authenticated
   with check ((select auth.uid()) = auteur_id and statut = 'a_traiter');
+drop policy if exists "signalements_select_own" on public.signalements;
 create policy "signalements_select_own" on public.signalements
   for select to authenticated using ((select auth.uid()) = auteur_id);
