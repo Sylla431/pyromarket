@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ButtonLink, buttonClass } from "@/components/button";
 import { IconBell, IconChevron, IconFlag, IconGrinder, IconMarket, IconShield, IconTruck } from "@/components/icons";
 import { Card, Pill, SectionTitle } from "@/components/ui";
+import { InstallButton } from "@/components/install-app";
 import { deconnexion } from "@/lib/auth-actions";
 import { getProfil } from "@/lib/profil";
 
@@ -25,6 +26,9 @@ export default async function ComptePage() {
           <ButtonLink href="/inscription" variant="secondary">
             Créer un compte
           </ButtonLink>
+        </div>
+        <div className="mt-10 border-t border-line pt-6">
+          <InstallButton />
         </div>
       </div>
     );
@@ -124,6 +128,11 @@ export default async function ComptePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section>
+        <SectionTitle>Application</SectionTitle>
+        <InstallButton />
       </section>
 
       {mode === "connecte" && (

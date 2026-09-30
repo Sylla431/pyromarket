@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { RegisterServiceWorker } from "@/components/register-service-worker";
 import { BottomNav, TopBar } from "@/components/nav";
+import { InstallBanner } from "@/components/install-app";
 
 const hyperlegible = localFont({
   variable: "--font-hyperlegible",
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   title: "PyroMarket — le marché du plastique pour la pyrolyse",
   description:
     "Mise en relation des vendeurs de plastique, transporteurs et possesseurs de broyeurs pour l'industrie de la pyrolyse.",
+  applicationName: "PyroMarket",
+  formatDetection: { telephone: false },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -52,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <BottomNav />
+        <InstallBanner />
       </body>
     </html>
   );
