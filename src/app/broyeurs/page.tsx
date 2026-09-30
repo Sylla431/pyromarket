@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { buttonClass } from "@/components/button";
+import { ButtonLink, buttonClass } from "@/components/button";
 import { Select } from "@/components/field";
 import { IconChevron, IconPin } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
 import { EmptyState, PageHeader, Pill } from "@/components/ui";
-import { mockBroyeurs } from "@/lib/mock-data";
+import { listerBroyeurs } from "@/lib/data";
 import { REGIONS, RESINES, formatXof } from "@/lib/resines";
 
 function str(v: string | string[] | undefined) {
@@ -16,9 +16,7 @@ export default async function BroyeursPage({ searchParams }: PageProps<"/broyeur
   const region = str(params.region);
   const resine = Number(str(params.resine)) || 0;
 
-  const broyeurs = mockBroyeurs.filter(
-    (b) => (!region || b.region === region) && (!resine || b.matieres.includes(resine as never)),
-  );
+  const broyeurs = await listerBroyeurs({ region: region || undefined, resine: resine || undefined });
 
   return (
     <div>
@@ -85,7 +83,14 @@ export default async function BroyeursPage({ searchParams }: PageProps<"/broyeur
         ))}
       </ul>
       {broyeurs.length === 0 && (
-        <EmptyState title="Aucun broyeur ne correspond">Essayez une région voisine ou toutes matières.</EmptyState>
+        region || resine ? (
+          <EmptyState title="Aucun broyeur ne correspond">Essayez une région voisine ou toutes matières.</EmptyState>
+        ) : (
+          <EmptyState
+            title="Aucun broyeur inscrit pour l'instant"
+            action={<ButtonLink href="/compte/broyeur">Inscrire mon broyeur</ButtonLink>}
+          />
+        )
       )}
     </div>
   );

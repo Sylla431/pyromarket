@@ -2,12 +2,29 @@ import { AnnonceCard } from "@/components/annonce-card";
 import { ButtonLink } from "@/components/button";
 import { DemoActions } from "@/components/demo-actions";
 import { EmptyState, PageHeader, Segmented } from "@/components/ui";
-import { mockAnnonces, mockProfil } from "@/lib/mock-data";
+import { mesAnnonces } from "@/lib/data";
+import { getUserId, supabaseConfigure } from "@/lib/supabase/session";
+import { ClotureButton } from "./cloture-button";
 
 export default async function MesAnnoncesPage({ searchParams }: PageProps<"/compte/annonces">) {
   const params = await searchParams;
   const vue = params.vue === "cloturees" ? "cloturee" : "publiee";
-  const mes = mockAnnonces.filter((a) => a.vendeur === mockProfil.entreprise);
+  const demo = !supabaseConfigure();
+  const userId = demo ? null : await getUserId();
+
+  if (!demo && !userId) {
+    return (
+      <div className="mx-auto max-w-sm pt-10 text-center">
+        <PageHeader back="/compte" title="Mes annonces" />
+        <p className="text-muted">Connectez-vous pour retrouver vos annonces.</p>
+        <ButtonLink href="/connexion" className="mt-6 w-full">
+          Se connecter
+        </ButtonLink>
+      </div>
+    );
+  }
+
+  const mes = await mesAnnonces(userId);
   const liste = mes.filter((a) => a.statut === vue);
 
   return (
@@ -32,13 +49,13 @@ export default async function MesAnnoncesPage({ searchParams }: PageProps<"/comp
           <li key={a.id} className="space-y-2">
             <AnnonceCard annonce={a} />
             {a.statut === "publiee" && (
-              <DemoActions
-                className="justify-end"
-                choix={[
-                  { label: "Modifier", fait: "Modification bientôt disponible", variant: "ghost" },
-                  { label: "Clôturer la vente", fait: "Annonce clôturée", variant: "secondary" },
-                ]}
-              />
+              <div className="flex justify-end">
+                {demo ? (
+                  <DemoActions choix={[{ label: "Clôturer la vente", fait: "Annonce clôturée", variant: "secondary" }]} />
+                ) : (
+                  <ClotureButton id={a.id} />
+                )}
+              </div>
             )}
           </li>
         ))}

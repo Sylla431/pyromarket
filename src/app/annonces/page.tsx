@@ -4,7 +4,7 @@ import { ButtonLink, buttonClass } from "@/components/button";
 import { Field, Input, Select } from "@/components/field";
 import { IconSearch, IconSliders } from "@/components/icons";
 import { EmptyState, PageHeader, Segmented } from "@/components/ui";
-import { mockAnnonces } from "@/lib/mock-data";
+import { listerAnnonces } from "@/lib/data";
 import { REGIONS, RESINES } from "@/lib/resines";
 
 function str(v: string | string[] | undefined) {
@@ -13,25 +13,21 @@ function str(v: string | string[] | undefined) {
 
 export default async function AnnoncesPage({ searchParams }: PageProps<"/annonces">) {
   const params = await searchParams;
-  const q = str(params.q).toLowerCase();
+  const q = str(params.q);
   const resine = Number(str(params.resine)) || 0;
   const sens = str(params.sens) === "achat" ? "achat" : "vente";
   const region = str(params.region);
   const qmin = Number(str(params.qmin)) || 0;
   const pmax = Number(str(params.pmax)) || 0;
 
-  const annonces = mockAnnonces.filter(
-    (a) =>
-      a.statut === "publiee" &&
-      a.sens === sens &&
-      (!resine || a.resine === resine) &&
-      (!region || a.region === region) &&
-      (!qmin || a.quantiteKg >= qmin * 1000) &&
-      (!pmax || (a.prixXof !== null && a.prixXof <= pmax)) &&
-      (!q ||
-        a.typePlastique.toLowerCase().includes(q) ||
-        a.localisation.toLowerCase().includes(q)),
-  );
+  const annonces = await listerAnnonces({
+    sens,
+    resine: resine || undefined,
+    region: region || undefined,
+    quantiteMinKg: qmin ? qmin * 1000 : undefined,
+    prixMaxXof: pmax || undefined,
+    q: q || undefined,
+  });
 
   // Construit une URL en conservant les autres filtres.
   const href = (patch: Record<string, string | number | undefined>) => {

@@ -4,12 +4,12 @@ import { ButtonLink } from "@/components/button";
 import { IconChat, IconFlag, IconPin } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
 import { Card, PageHeader, Pill, SectionTitle, Stat, StickyActions } from "@/components/ui";
-import { mockBroyeurs } from "@/lib/mock-data";
+import { lireBroyeur } from "@/lib/data";
 import { formatXof } from "@/lib/resines";
 
 export default async function BroyeurPage({ params }: PageProps<"/broyeurs/[id]">) {
   const { id } = await params;
-  const b = mockBroyeurs.find((x) => x.id === id);
+  const b = await lireBroyeur(id);
   if (!b) notFound();
 
   return (

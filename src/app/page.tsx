@@ -3,12 +3,12 @@ import { AnnonceCard } from "@/components/annonce-card";
 import { ButtonLink } from "@/components/button";
 import { IconChevron, IconGrinder, IconTruck } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
-import { SectionTitle } from "@/components/ui";
-import { mockAnnonces } from "@/lib/mock-data";
+import { EmptyState, SectionTitle } from "@/components/ui";
+import { annoncesRecentes } from "@/lib/data";
 import { RESINES, formatKg } from "@/lib/resines";
 
-export default function Home() {
-  const publiees = mockAnnonces.filter((a) => a.statut === "publiee");
+export default async function Home() {
+  const publiees = await annoncesRecentes();
   const volumeParResine = RESINES.map((r) => ({
     ...r,
     kg: publiees
@@ -99,6 +99,14 @@ export default function Home() {
           {publiees.slice(0, 4).map((a) => (
             <AnnonceCard key={a.id} annonce={a} />
           ))}
+          {publiees.length === 0 && (
+            <EmptyState
+              title="Aucune annonce pour l'instant"
+              action={<ButtonLink href="/annonces/nouvelle">Publier la première annonce</ButtonLink>}
+            >
+              Les annonces publiées apparaîtront ici.
+            </EmptyState>
+          )}
         </div>
       </section>
 

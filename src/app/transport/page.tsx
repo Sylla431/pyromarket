@@ -4,7 +4,8 @@ import { Select } from "@/components/field";
 import { IconChat, IconTruck } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
 import { Card, EmptyState, PageHeader, Pill, Segmented, Stat } from "@/components/ui";
-import { mockAnnonces, mockCourses, mockTransporteurs, type CourseMock } from "@/lib/mock-data";
+import { lireAnnonce, listerTransporteurs } from "@/lib/data";
+import { mockCourses, type CourseMock } from "@/lib/mock-data";
 import { REGIONS, formatKg, formatXof } from "@/lib/resines";
 
 const STATUTS: Record<CourseMock["statut"], { label: string; tone: "coral" | "teal" | "mint" | "muted" }> = {
@@ -21,12 +22,11 @@ function str(v: string | string[] | undefined) {
 export default async function TransportPage({ searchParams }: PageProps<"/transport">) {
   const params = await searchParams;
   const vue = str(params.vue) === "courses" ? "courses" : "transporteurs";
-  const annonce = mockAnnonces.find((a) => a.id === str(params.annonce));
+  const annonceId = str(params.annonce);
+  const annonce = annonceId ? await lireAnnonce(annonceId) : null;
   const region = str(params.region) || annonce?.region || "";
 
-  const transporteurs = mockTransporteurs
-    .filter((t) => !region || t.regions.includes(region))
-    .sort((a, b) => Number(b.disponible) - Number(a.disponible));
+  const transporteurs = vue === "transporteurs" ? await listerTransporteurs(region || undefined) : [];
 
   return (
     <div>
@@ -112,9 +112,16 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
               </li>
             ))}
             {transporteurs.length === 0 && (
-              <EmptyState title="Aucun transporteur dans cette région">
-                Élargissez la recherche à tout le Mali.
-              </EmptyState>
+              region ? (
+                <EmptyState title="Aucun transporteur dans cette région">
+                  Élargissez la recherche à tout le Mali.
+                </EmptyState>
+              ) : (
+                <EmptyState
+                  title="Aucun transporteur inscrit pour l'instant"
+                  action={<ButtonLink href="/compte/transporteur">Proposer ma capacité</ButtonLink>}
+                />
+              )
             )}
           </ul>
         </>

@@ -4,12 +4,12 @@ import { ButtonLink } from "@/components/button";
 import { IconCamera, IconChat, IconFlag, IconGrinder, IconPin, IconShield, IconTruck } from "@/components/icons";
 import { ResinBadge } from "@/components/resin-badge";
 import { Card, PageHeader, Pill, SectionTitle, Stat, StickyActions } from "@/components/ui";
-import { mockAnnonces } from "@/lib/mock-data";
+import { lireAnnonce } from "@/lib/data";
 import { formatKg, formatXof, resine } from "@/lib/resines";
 
 export default async function AnnoncePage({ params }: PageProps<"/annonces/[id]">) {
   const { id } = await params;
-  const a = mockAnnonces.find((x) => x.id === id);
+  const a = await lireAnnonce(id);
   if (!a) notFound();
   const r = resine(a.resine);
 
