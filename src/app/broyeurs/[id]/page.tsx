@@ -26,7 +26,7 @@ export default async function BroyeurPage({ params }: PageProps<"/broyeurs/[id]"
       <Card className="mt-4 p-4">
         <dl className="grid grid-cols-2 gap-4">
           <Stat label="Capacité" value={`${b.capaciteKgH.toLocaleString("fr-FR")} kg/h`} />
-          <Stat label="Tarif indicatif" value={<span className="text-mint">{formatXof(b.tarifXofKg)}/kg</span>} />
+          <Stat label="Tarif indicatif" value={<span className="text-accent">{formatXof(b.tarifXofKg)}/kg</span>} />
         </dl>
       </Card>
 

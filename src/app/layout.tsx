@@ -32,13 +32,13 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "PyroMarket",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#021F28",
+  themeColor: "#FFFFFF",
   viewportFit: "cover",
 };
 

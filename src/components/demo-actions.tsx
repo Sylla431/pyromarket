@@ -11,7 +11,7 @@ export function DemoActions({ choix, className = "" }: { choix: Choix[]; classNa
 
   if (fait) {
     return (
-      <p role="status" className="text-sm font-medium text-mint">
+      <p role="status" className="text-sm font-medium text-accent">
         {fait}
       </p>
     );
@@ -44,7 +44,7 @@ export function Toggle({ defaultOn, label }: { defaultOn: boolean; label: string
       onClick={() => setOn(!on)}
       className={`relative h-8 w-14 shrink-0 rounded-full transition ${on ? "bg-mint" : "bg-line"}`}
     >
-      <span className={`absolute top-1 size-6 rounded-full bg-ink transition-all ${on ? "left-7" : "left-1"}`} />
+      <span className={`absolute top-1 size-6 rounded-full bg-white shadow transition-all ${on ? "left-7" : "left-1"}`} />
     </button>
   );
 }

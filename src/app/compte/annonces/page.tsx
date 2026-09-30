@@ -15,7 +15,7 @@ export default async function MesAnnoncesPage({ searchParams }: PageProps<"/comp
       <PageHeader back="/compte" title="Mes annonces" />
 
       {params.publiee && (
-        <p role="status" className="mb-4 rounded-xl border border-mint/40 bg-mint/10 px-4 py-3 text-sm text-mint">
+        <p role="status" className="mb-4 rounded-xl border border-accent/40 bg-mint/10 px-4 py-3 text-sm text-accent">
           Annonce publiée. Elle est visible sur le marché.
         </p>
       )}

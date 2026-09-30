@@ -4,7 +4,7 @@ import { resine } from "@/lib/resines";
 export function ResinBadge({
   code,
   size = "md",
-  className = "text-mint",
+  className = "text-accent",
 }: {
   code: number;
   size?: "sm" | "md" | "lg";

@@ -24,7 +24,7 @@ export function AnnonceCard({ annonce: a }: { annonce: AnnonceMock }) {
           <p className="font-mono text-[15px] text-foreground">
             {formatKg(a.quantiteKg)}
             <span className="mx-2 text-line">|</span>
-            <span className="text-mint">
+            <span className="text-accent">
               {a.prixXof !== null ? `${formatXof(a.prixXof)}/t` : "Prix à discuter"}
             </span>
           </p>

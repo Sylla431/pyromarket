@@ -26,7 +26,7 @@ export default async function AnnoncePage({ params }: PageProps<"/annonces/[id]"
           Array.from({ length: a.photos }).map((_, i) => (
             <div
               key={i}
-              className="grid aspect-[4/3] w-[82%] shrink-0 snap-start place-items-center rounded-2xl border border-line bg-[repeating-linear-gradient(135deg,var(--color-surface)_0_12px,var(--color-ink)_12px_24px)] text-subtle sm:w-72"
+              className="grid aspect-[4/3] w-[82%] shrink-0 snap-start place-items-center rounded-2xl border border-line bg-[repeating-linear-gradient(135deg,var(--color-surface)_0_12px,var(--color-line)_12px_24px)] text-subtle sm:w-72"
             >
               <span className="flex items-center gap-2 text-sm">
                 <IconCamera size={18} /> Photo {i + 1}/{a.photos}

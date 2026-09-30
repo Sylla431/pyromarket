@@ -9,7 +9,7 @@ export default function InscriptionPage() {
       <InscriptionForm />
       <p className="mt-8 text-center text-sm text-muted">
         Déjà inscrit ?{" "}
-        <Link href="/connexion" className="font-medium text-mint hover:underline">
+        <Link href="/connexion" className="font-medium text-accent hover:underline">
           Se connecter
         </Link>
       </p>

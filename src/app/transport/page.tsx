@@ -148,7 +148,7 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
                     <span className="text-subtle">
                       {c.devisXof !== null ? (
                         <>
-                          Devis <span className="font-mono text-mint">{formatXof(c.devisXof)}</span>
+                          Devis <span className="font-mono text-accent">{formatXof(c.devisXof)}</span>
                         </>
                       ) : (
                         "Devis en attente"

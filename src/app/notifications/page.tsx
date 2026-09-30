@@ -30,10 +30,10 @@ export default function NotificationsPage() {
               <Link
                 href={n.href}
                 className={`flex gap-3 rounded-2xl border p-4 transition hover:border-teal ${
-                  n.lu ? "border-line" : "border-mint/40 bg-mint/5"
+                  n.lu ? "border-line" : "border-accent/40 bg-mint/5"
                 }`}
               >
-                <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${n.lu ? "bg-surface text-subtle" : "bg-mint/15 text-mint"}`}>
+                <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${n.lu ? "bg-surface text-subtle" : "bg-mint/15 text-accent"}`}>
                   <Icon size={20} />
                 </span>
                 <span className="min-w-0 flex-1">

@@ -80,7 +80,7 @@ export function Segmented({
           href={item.href}
           aria-current={item.active ? "page" : undefined}
           className={`flex h-10 flex-1 items-center justify-center gap-1.5 rounded-lg text-sm font-medium transition ${
-            item.active ? "bg-ink text-mint shadow" : "text-muted hover:text-foreground"
+            item.active ? "bg-background text-foreground shadow-sm" : "text-muted hover:text-foreground"
           }`}
         >
           {item.label}
@@ -94,7 +94,7 @@ export function Segmented({
 }
 
 const pillTones = {
-  mint: "bg-mint/12 text-mint",
+  mint: "bg-mint/25 text-accent",
   teal: "bg-teal/15 text-teal",
   coral: "bg-coral/12 text-coral",
   muted: "bg-line/60 text-muted",
@@ -146,7 +146,7 @@ export function Stat({ label, value }: { label: string; value: ReactNode }) {
 // Bandeau d'action collé au-dessus de la barre d'onglets sur mobile.
 export function StickyActions({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-ink/95 px-4 py-3 backdrop-blur md:static md:mt-8 md:border-0 md:bg-transparent md:p-0 md:backdrop-blur-none">
+    <div className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-background/95 px-4 py-3 backdrop-blur md:static md:mt-8 md:border-0 md:bg-transparent md:p-0 md:backdrop-blur-none">
       <div className="mx-auto flex max-w-3xl gap-3">{children}</div>
     </div>
   );

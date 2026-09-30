@@ -9,7 +9,7 @@ export default function ConnexionPage() {
       <ConnexionForm />
       <p className="mt-8 text-center text-sm text-muted">
         Pas encore de compte ?{" "}
-        <Link href="/inscription" className="font-medium text-mint hover:underline">
+        <Link href="/inscription" className="font-medium text-accent hover:underline">
           Créer un compte
         </Link>
       </p>

@@ -18,7 +18,7 @@ export function InscriptionForm() {
   const [vendeur, setVendeur] = useState(false);
 
   if (state.info) {
-    return <p className="rounded-2xl border border-mint/40 bg-mint/10 p-5 text-mint">{state.info}</p>;
+    return <p className="rounded-2xl border border-accent/40 bg-mint/10 p-5 text-accent">{state.info}</p>;
   }
 
   return (

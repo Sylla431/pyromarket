@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { buttonClass } from "./button";
 import { IconPlus } from "./icons";
@@ -123,14 +124,17 @@ function usePlateforme() {
   return useSyncExternalStore<Plateforme | null>(sansAbonnement, detecter, () => null);
 }
 
-// Bandeau proposé en bas de l'écran, masquable 14 jours.
+// Bandeau proposé en bas de l'accueil, masquable 14 jours. Limité à
+// l'accueil pour ne pas masquer les boutons d'action des autres pages.
 export function InstallBanner() {
+  const pathname = usePathname();
   const prompt = useDeferredPrompt();
   const plateforme = usePlateforme();
   const masque = useSyncExternalStore(subscribe, masqueRecemment, () => true);
   const [aide, setAide] = useState(false);
 
-  const disponible = plateforme === "ios" || (plateforme === "autre" && prompt !== null);
+  const disponible =
+    pathname === "/" && (plateforme === "ios" || (plateforme === "autre" && prompt !== null));
   if (!disponible || masque) return aide ? <InstructionsIos onClose={() => setAide(false)} /> : null;
 
   function fermer() {
@@ -152,7 +156,7 @@ export function InstallBanner() {
 
   return (
     <>
-      <div className="fixed inset-x-3 bottom-[calc(5.25rem+env(safe-area-inset-bottom))] z-40 flex items-center gap-3 rounded-2xl border border-mint/40 bg-surface p-3 shadow-2xl shadow-ink md:inset-x-auto md:right-6 md:bottom-6 md:w-96">
+      <div className="fixed inset-x-3 bottom-[calc(5.25rem+env(safe-area-inset-bottom))] z-40 flex items-center gap-3 rounded-2xl border border-accent/40 bg-surface p-3 shadow-xl shadow-ink/10 md:inset-x-auto md:right-6 md:bottom-6 md:w-96">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/icon-96.png" alt="" width={44} height={44} className="rounded-xl" />
         <div className="min-w-0 flex-1">
@@ -166,7 +170,7 @@ export function InstallBanner() {
           type="button"
           onClick={fermer}
           aria-label="Masquer"
-          className="grid size-9 shrink-0 place-items-center rounded-lg text-subtle hover:bg-ink hover:text-foreground"
+          className="grid size-9 shrink-0 place-items-center rounded-lg text-subtle hover:bg-line hover:text-foreground"
         >
           <IconPlus size={18} className="rotate-45" />
         </button>

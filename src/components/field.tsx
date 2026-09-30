@@ -29,7 +29,7 @@ export function Select(props: ComponentProps<"select">) {
   return (
     <select
       {...props}
-      className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22><path d=%22M1 1l5 5 5-5%22 stroke=%22%238fb3ba%22 stroke-width=%221.8%22 fill=%22none%22/></svg>')] bg-[position:right_1rem_center] bg-no-repeat pr-10 ${props.className ?? ""}`}
+      className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22><path d=%22M1 1l5 5 5-5%22 stroke=%22%234f6b72%22 stroke-width=%221.8%22 fill=%22none%22/></svg>')] bg-[position:right_1rem_center] bg-no-repeat pr-10 ${props.className ?? ""}`}
     />
   );
 }
@@ -67,7 +67,7 @@ export function ChoiceChip({
         defaultChecked={defaultChecked}
         className="peer sr-only"
       />
-      <span className="flex min-h-12 items-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-soft transition peer-checked:border-mint peer-checked:bg-mint/10 peer-checked:text-mint peer-focus-visible:outline-2 peer-focus-visible:outline-mint">
+      <span className="flex min-h-12 items-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-soft transition peer-checked:border-accent peer-checked:bg-mint/10 peer-checked:text-accent peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
         {children}
       </span>
     </label>

@@ -92,7 +92,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
         <Link
           href={href({ resine: "" })}
           className={`flex h-10 shrink-0 items-center rounded-full border px-4 text-sm transition ${
-            !resine ? "border-mint bg-mint/10 text-mint" : "border-line text-soft hover:border-teal"
+            !resine ? "border-accent bg-mint/10 text-accent" : "border-line text-soft hover:border-teal"
           }`}
         >
           Toutes
@@ -102,7 +102,7 @@ export default async function AnnoncesPage({ searchParams }: PageProps<"/annonce
             key={r.code}
             href={href({ resine: r.code })}
             className={`flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-sm transition ${
-              resine === r.code ? "border-mint bg-mint/10 text-mint" : "border-line text-soft hover:border-teal"
+              resine === r.code ? "border-accent bg-mint/10 text-accent" : "border-line text-soft hover:border-teal"
             }`}
           >
             <span className="font-mono text-xs opacity-70">{r.code}</span>

@@ -39,12 +39,12 @@ export function Thread({ initial }: { initial: Message[] }) {
               }`}
             >
               {m.devis && (
-                <div className="mb-2 rounded-xl border border-teal/40 bg-ink/40 p-3">
+                <div className="mb-2 rounded-xl border border-teal/40 bg-background p-3">
                   <p className="text-xs tracking-wide text-teal uppercase">Devis transport</p>
-                  <p className="font-wide mt-1 text-2xl font-bold text-mint">{formatXof(m.devis.montantXof)}</p>
+                  <p className="font-wide mt-1 text-2xl font-bold text-accent">{formatXof(m.devis.montantXof)}</p>
                   <p className="text-sm text-soft">{m.devis.trajet}</p>
                   {decisions[i] ? (
-                    <p className={`mt-3 text-sm font-medium ${decisions[i] === "acceptee" ? "text-mint" : "text-coral"}`}>
+                    <p className={`mt-3 text-sm font-medium ${decisions[i] === "acceptee" ? "text-accent" : "text-coral"}`}>
                       {decisions[i] === "acceptee" ? "Devis accepté" : "Devis refusé"}
                     </p>
                   ) : (
@@ -52,7 +52,7 @@ export function Thread({ initial }: { initial: Message[] }) {
                       <button
                         type="button"
                         onClick={() => setDecisions((d) => ({ ...d, [i]: "acceptee" }))}
-                        className="h-10 rounded-lg bg-mint text-sm font-medium text-ink hover:bg-teal"
+                        className="h-10 rounded-lg bg-mint text-sm font-medium text-ink hover:bg-mint-strong"
                       >
                         Accepter
                       </button>
@@ -76,7 +76,7 @@ export function Thread({ initial }: { initial: Message[] }) {
 
       <form
         onSubmit={envoyer}
-        className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-ink/95 px-4 py-3 backdrop-blur md:bottom-0"
+        className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-background/95 px-4 py-3 backdrop-blur md:bottom-0"
       >
         <div className="mx-auto flex max-w-3xl gap-2">
           <label className="flex-1">
@@ -92,7 +92,7 @@ export function Thread({ initial }: { initial: Message[] }) {
             type="submit"
             aria-label="Envoyer"
             disabled={!texte.trim()}
-            className="grid size-12 shrink-0 place-items-center rounded-xl bg-mint text-ink transition hover:bg-teal active:scale-95 disabled:opacity-40"
+            className="grid size-12 shrink-0 place-items-center rounded-xl bg-mint text-ink transition hover:bg-mint-strong active:scale-95 disabled:opacity-40"
           >
             <IconSend size={20} />
           </button>

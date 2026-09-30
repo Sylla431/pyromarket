@@ -32,9 +32,9 @@ export default function PublierPage() {
           <li key={href}>
             <Link
               href={href}
-              className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-5 transition hover:border-mint active:scale-[0.99]"
+              className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-5 transition hover:border-accent active:scale-[0.99]"
             >
-              <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-mint/10 text-mint">
+              <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-mint/10 text-accent">
                 <Icon size={26} />
               </span>
               <span className="min-w-0 flex-1">

@@ -72,10 +72,10 @@ export default async function BroyeursPage({ searchParams }: PageProps<"/broyeur
               <div className="mt-3 flex items-end justify-between gap-3 border-t border-line pt-3">
                 <div className="flex gap-2">
                   {b.matieres.map((m) => (
-                    <ResinBadge key={m} code={m} size="sm" className={m === resine ? "text-mint" : "text-subtle"} />
+                    <ResinBadge key={m} code={m} size="sm" className={m === resine ? "text-accent" : "text-subtle"} />
                   ))}
                 </div>
-                <span className="flex items-center gap-1 font-mono text-sm text-mint">
+                <span className="flex items-center gap-1 font-mono text-sm text-accent">
                   {formatXof(b.tarifXofKg)}/kg
                   <IconChevron size={16} className="text-subtle" />
                 </span>

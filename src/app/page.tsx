@@ -35,7 +35,7 @@ export default function Home() {
             <li key={r.code}>
               <Link
                 href={`/annonces?resine=${r.code}`}
-                className="flex h-full flex-col items-center gap-2 rounded-2xl border border-line bg-surface/60 px-1 pt-3 pb-2.5 transition hover:border-mint active:scale-95"
+                className="flex h-full flex-col items-center gap-2 rounded-2xl border border-line bg-surface/60 px-1 pt-3 pb-2.5 transition hover:border-accent active:scale-95"
               >
                 <ResinBadge code={r.code} />
                 <span className="font-mono text-[11px] text-subtle">
@@ -47,7 +47,7 @@ export default function Home() {
           <li className="sm:hidden">
             <Link
               href="/annonces"
-              className="flex h-full flex-col items-center justify-center gap-1 rounded-2xl border border-dashed border-line text-xs text-muted hover:border-mint hover:text-mint"
+              className="flex h-full flex-col items-center justify-center gap-1 rounded-2xl border border-dashed border-line text-xs text-muted hover:border-accent hover:text-accent"
             >
               Tout voir
               <IconChevron size={16} />
@@ -88,7 +88,7 @@ export default function Home() {
       <section>
         <SectionTitle
           action={
-            <Link href="/annonces" className="text-sm text-mint hover:underline">
+            <Link href="/annonces" className="text-sm text-accent hover:underline">
               Tout voir
             </Link>
           }

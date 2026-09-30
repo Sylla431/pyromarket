@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #021f28;
-  --foreground: #eaf7f7;
+  --background: #ffffff;
+  --foreground: #021f28;
 }
 
 @theme inline {
@@ -12,15 +12,20 @@
   /* Palette */
   --color-ink: #021f28;
   --color-mint: #01ffc3;
-  --color-teal: #00b5b5;
-  --color-coral: #ff4d78;
+  /* Menthe et turquoise sont trop clairs pour du texte sur fond blanc :
+     mint et mint-strong servent aux aplats (boutons), accent/teal/coral aux
+     textes, icônes et bordures (contraste ≥ 4,5:1 sur blanc). */
+  --color-mint-strong: #00e6b0;
+  --color-accent: #00806b;
+  --color-teal: #008080;
+  --color-coral: #d6204f;
 
-  /* Shades derived from ink for surfaces, borders and secondary text */
-  --color-surface: #06303b;
-  --color-line: #0e4552;
-  --color-soft: #c4dce0;
-  --color-muted: #8fb3ba;
-  --color-subtle: #6a95a0;
+  /* Surfaces et textes secondaires sur fond blanc */
+  --color-surface: #f2f7f8;
+  --color-line: #d9e4e6;
+  --color-soft: #2a454d;
+  --color-muted: #48626a;
+  --color-subtle: #5e767c;
 
   --font-sans: var(--font-hyperlegible);
   --font-mono: var(--font-geist-mono);

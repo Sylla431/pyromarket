@@ -51,7 +51,7 @@ export function BroyeurForm() {
           {RESINES.map((r) => (
             <label key={r.code} className="cursor-pointer">
               <input type="checkbox" name="matieres" value={r.code} className="peer sr-only" />
-              <span className="flex justify-center rounded-xl border border-line bg-surface py-2.5 text-subtle transition peer-checked:border-mint peer-checked:bg-mint/10 peer-checked:text-mint peer-focus-visible:outline-2 peer-focus-visible:outline-mint">
+              <span className="flex justify-center rounded-xl border border-line bg-surface py-2.5 text-subtle transition peer-checked:border-accent peer-checked:bg-mint/10 peer-checked:text-accent peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
                 <ResinBadge code={r.code} size="sm" className="" />
               </span>
             </label>

@@ -17,7 +17,7 @@ export default function HorsLignePage() {
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
       <a
         href="/"
-        className="mt-8 inline-flex h-12 items-center rounded-xl bg-mint px-6 font-medium text-ink hover:bg-teal"
+        className="mt-8 inline-flex h-12 items-center rounded-xl bg-mint px-6 font-medium text-ink hover:bg-mint-strong"
       >
         Réessayer
       </a>
