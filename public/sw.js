@@ -4,7 +4,7 @@
 // Les pages ne sont jamais mises en cache : elles peuvent contenir des
 // données de compte.
 
-const VERSION = "v2";
+const VERSION = "v3";
 const STATIC_CACHE = `pyromarket-static-${VERSION}`;
 const OFFLINE_URL = "/hors-ligne";
 

@@ -62,7 +62,7 @@ export default async function Home() {
           className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-4 transition hover:border-teal"
         >
           <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-teal/15 text-teal">
-            <IconTruck />
+            <IconTruck size={26} weight="duotone" />
           </span>
           <span className="min-w-0 flex-1">
             <span className="block font-medium text-foreground">Trouver un transporteur</span>
@@ -75,7 +75,7 @@ export default async function Home() {
           className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-4 transition hover:border-teal"
         >
           <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-teal/15 text-teal">
-            <IconGrinder />
+            <IconGrinder size={26} weight="duotone" />
           </span>
           <span className="min-w-0 flex-1">
             <span className="block font-medium text-foreground">Faire broyer la matière</span>

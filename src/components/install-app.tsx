@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { buttonClass } from "./button";
-import { IconPlus } from "./icons";
+import { IconClose, IconPlus, IconShare } from "./icons";
 
 // L'évènement d'installation de Chrome/Android (absent des types DOM).
 type InstallEvent = Event & {
@@ -68,15 +68,6 @@ function masqueRecemment() {
   }
 }
 
-function IconPartager() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="inline -mt-1">
-      <path d="M12 3v12M8 7l4-4 4 4" />
-      <path d="M6 11H5v10h14V11h-1" />
-    </svg>
-  );
-}
-
 function InstructionsIos({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-end bg-ink/70 backdrop-blur-sm md:items-center md:justify-center" onClick={onClose}>
@@ -94,7 +85,7 @@ function InstructionsIos({ onClose }: { onClose: () => void }) {
           <li className="flex gap-3">
             <span className="grid size-7 shrink-0 place-items-center rounded-full border border-teal font-mono text-xs text-teal">1</span>
             <span>
-              Touchez <strong className="text-foreground">Partager</strong> <IconPartager /> dans la barre de Safari.
+              Touchez <strong className="text-foreground">Partager</strong> <IconShare size={18} className="inline -mt-1" /> dans la barre de Safari.
             </span>
           </li>
           <li className="flex gap-3">
@@ -172,7 +163,7 @@ export function InstallBanner() {
           aria-label="Masquer"
           className="grid size-9 shrink-0 place-items-center rounded-lg text-subtle hover:bg-line hover:text-foreground"
         >
-          <IconPlus size={18} className="rotate-45" />
+          <IconClose size={18} />
         </button>
       </div>
       {aide && <InstructionsIos onClose={() => setAide(false)} />}

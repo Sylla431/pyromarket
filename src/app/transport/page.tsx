@@ -82,7 +82,7 @@ export default async function TransportPage({ searchParams }: PageProps<"/transp
                 <Card className="p-4">
                   <div className="flex items-start gap-3">
                     <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-teal/15 text-teal">
-                      <IconTruck />
+                      <IconTruck size={24} weight="duotone" />
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">

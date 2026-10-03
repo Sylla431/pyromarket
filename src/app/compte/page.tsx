@@ -118,7 +118,7 @@ export default async function ComptePage() {
                 href={href}
                 className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-4 transition hover:border-teal"
               >
-                <Icon className="text-teal" />
+                <Icon size={24} weight="duotone" className="text-teal" />
                 <span className="min-w-0 flex-1">
                   <span className="block font-medium text-foreground">{label}</span>
                   <span className="block text-sm text-muted">{detail}</span>

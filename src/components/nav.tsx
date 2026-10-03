@@ -101,7 +101,7 @@ export function BottomNav() {
                   aria-label={label}
                   className="-mt-7 grid size-14 place-items-center rounded-2xl bg-mint text-ink shadow-lg shadow-mint/20 ring-4 ring-background transition active:scale-95"
                 >
-                  <Icon size={26} strokeWidth={2.2} />
+                  <Icon size={26} weight="bold" />
                 </Link>
               ) : (
                 <Link
@@ -111,7 +111,7 @@ export function BottomNav() {
                     active ? "text-accent" : "text-subtle"
                   }`}
                 >
-                  <Icon />
+                  <Icon weight={active ? "fill" : "regular"} />
                   {label}
                   {badge ? (
                     <span className="absolute top-0 right-3 grid min-w-4 place-items-center rounded-full bg-coral px-1 font-mono text-[10px] leading-4 text-white">

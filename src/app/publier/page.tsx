@@ -35,7 +35,7 @@ export default function PublierPage() {
               className="flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-5 transition hover:border-accent active:scale-[0.99]"
             >
               <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-mint/10 text-accent">
-                <Icon size={26} />
+                <Icon size={30} weight="duotone" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-[17px] font-medium text-foreground">{titre}</span>

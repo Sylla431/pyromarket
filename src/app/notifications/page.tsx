@@ -34,7 +34,7 @@ export default function NotificationsPage() {
                 }`}
               >
                 <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${n.lu ? "bg-surface text-subtle" : "bg-mint/15 text-accent"}`}>
-                  <Icon size={20} />
+                  <Icon size={20} weight={n.lu ? "regular" : "fill"} />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="flex items-baseline justify-between gap-2">
