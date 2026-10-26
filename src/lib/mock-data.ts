@@ -476,4 +476,5 @@ export const mockProfil = {
   roles: ["vendeur", "broyeur"] as string[],
   rccmVerifie: true,
   agrement: "En attente de vérification",
+  isAdmin: false,
 };

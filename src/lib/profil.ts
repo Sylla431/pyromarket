@@ -10,6 +10,7 @@ export type ProfilVue = {
   roles: string[];
   rccmVerifie: boolean;
   agrement: string;
+  isAdmin: boolean;
 };
 
 // Profil affiché dans l'espace compte : réel si connecté, démo si Supabase
@@ -23,7 +24,7 @@ export async function getProfil(): Promise<{ mode: "demo" | "connecte"; profil: 
   const supabase = await createClient();
   const { data } = await supabase
     .from("profiles")
-    .select("nom, entreprise, rccm, zone_activite, roles, rccm_verifie, agrement")
+    .select("nom, entreprise, rccm, zone_activite, roles, rccm_verifie, agrement, is_admin")
     .eq("id", id)
     .single();
 
@@ -37,6 +38,7 @@ export async function getProfil(): Promise<{ mode: "demo" | "connecte"; profil: 
       roles: data?.roles ?? [],
       rccmVerifie: data?.rccm_verifie ?? false,
       agrement: data?.agrement ?? "Non renseigné",
+      isAdmin: data?.is_admin ?? false,
     },
   };
 }

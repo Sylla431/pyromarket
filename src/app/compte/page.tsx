@@ -52,7 +52,7 @@ export default async function ComptePage() {
       Icon: IconGrinder,
       show: profil.roles.includes("broyeur"),
     },
-    { href: "/admin/moderation", label: "Modération", detail: "Signalements et vérifications", Icon: IconFlag, show: mode === "demo" },
+    { href: "/admin", label: "Tableau de bord", detail: "Toute l'activité de la plateforme", Icon: IconFlag, show: profil.isAdmin },
   ].filter((m) => m.show);
 
   return (
