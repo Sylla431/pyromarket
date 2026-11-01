@@ -27,7 +27,9 @@
   --color-muted: #48626a;
   --color-subtle: #5e767c;
 
-  /* Largeur du menu latéral (grand écran) : w-sidebar, left-sidebar… */
+  /* Menu latéral : réduit aux icônes de 768 à 1024 px (rail), complet
+     au-delà (sidebar). Utilitaires : w-rail, w-sidebar, left-sidebar… */
+  --spacing-rail: 76px;
   --spacing-sidebar: 248px;
 
   --font-sans: var(--font-hyperlegible);
