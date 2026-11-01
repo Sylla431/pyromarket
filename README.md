@@ -1,4 +1,4 @@
-# PyroMarket
+# Manasugu
 
 Le marché du plastique pour l'industrie de la pyrolyse : annonces de
 plastique (toutes catégories), mise en relation avec des transporteurs, et

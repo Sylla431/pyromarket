@@ -32,7 +32,7 @@ export function TopBar() {
     <header className="sticky top-0 z-30 border-b border-line bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur md:hidden">
       <div className="mx-auto flex h-14 max-w-5xl items-center gap-6 px-4">
         <Link href="/" className="font-wide text-lg font-bold tracking-tight">
-          Pyro<span className="text-accent">Market</span>
+          Mana<span className="text-accent">sugu</span>
         </Link>
 
         <nav className="hidden flex-1 items-center gap-1 md:flex" aria-label="Principale">

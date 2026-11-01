@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ResinBadge } from "@/components/resin-badge";
 
-export const metadata: Metadata = { title: "Hors ligne — PyroMarket" };
+export const metadata: Metadata = { title: "Hors ligne — Manasugu" };
 
 // Servie par le service worker quand le réseau est indisponible.
 export default function HorsLignePage() {
@@ -10,7 +10,7 @@ export default function HorsLignePage() {
       <ResinBadge code={7} size="lg" className="text-subtle" />
       <h1 className="font-wide mt-6 text-2xl text-foreground">Pas de connexion</h1>
       <p className="mt-2 text-muted">
-        PyroMarket a besoin d&apos;internet pour afficher les annonces et les messages.
+        Manasugu a besoin d&apos;internet pour afficher les annonces et les messages.
         Vérifiez votre réseau puis rechargez la page.
       </p>
       {/* Rechargement complet voulu : la navigation client échouerait hors ligne. */}

@@ -26,15 +26,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PyroMarket — le marché du plastique pour la pyrolyse",
+  title: "Manasugu — le marché du plastique pour la pyrolyse",
   description:
     "Mise en relation des vendeurs de plastique, transporteurs et possesseurs de broyeurs pour l'industrie de la pyrolyse.",
-  applicationName: "PyroMarket",
+  applicationName: "Manasugu",
   formatDetection: { telephone: false },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "PyroMarket",
+    title: "Manasugu",
   },
 };
 

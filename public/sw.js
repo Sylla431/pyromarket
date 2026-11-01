@@ -1,11 +1,11 @@
-// Service worker PyroMarket.
+// Service worker Manasugu.
 // - Pages : réseau d'abord, page hors ligne si le réseau manque.
 // - Fichiers statiques (JS/CSS versionnés, polices, icônes) : cache d'abord.
 // Les pages ne sont jamais mises en cache : elles peuvent contenir des
 // données de compte.
 
-const VERSION = "v3";
-const STATIC_CACHE = `pyromarket-static-${VERSION}`;
+const VERSION = "v4";
+const STATIC_CACHE = `manasugu-static-${VERSION}`;
 const OFFLINE_URL = "/hors-ligne";
 
 const PRECACHE = [
@@ -33,7 +33,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key.startsWith("pyromarket-") && key !== STATIC_CACHE)
+            .filter((key) => (key.startsWith("manasugu-") || key.startsWith("pyromarket-")) && key !== STATIC_CACHE)
             .map((key) => caches.delete(key)),
         ),
       )

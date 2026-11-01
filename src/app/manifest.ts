@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "PyroMarket",
-    short_name: "PyroMarket",
+    name: "Manasugu",
+    short_name: "Manasugu",
     description:
       "Le marché du plastique pour l'industrie de la pyrolyse : annonces, transport et annuaire des broyeurs.",
     start_url: "/",

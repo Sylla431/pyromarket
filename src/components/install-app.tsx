@@ -52,7 +52,7 @@ function detecter(): Plateforme {
   return ios ? "ios" : "autre";
 }
 
-const CLE_MASQUE = "pyromarket:installation-masquee";
+const CLE_MASQUE = "manasugu:installation-masquee";
 const DELAI_MS = 14 * 24 * 60 * 60 * 1000;
 
 // Repli en mémoire si le stockage du navigateur est bloqué.
@@ -97,7 +97,7 @@ function InstructionsIos({ onClose }: { onClose: () => void }) {
           <li className="flex gap-3">
             <span className="grid size-7 shrink-0 place-items-center rounded-full border border-teal font-mono text-xs text-teal">3</span>
             <span>
-              Touchez <strong className="text-foreground">Ajouter</strong>. PyroMarket apparaît avec vos applications.
+              Touchez <strong className="text-foreground">Ajouter</strong>. Manasugu apparaît avec vos applications.
             </span>
           </li>
         </ol>
@@ -151,7 +151,7 @@ export function InstallBanner() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/icon-96.png" alt="" width={44} height={44} className="rounded-xl" />
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-foreground">Installer PyroMarket</p>
+          <p className="text-sm font-medium text-foreground">Installer Manasugu</p>
           <p className="text-xs text-muted">Accès direct depuis l&apos;écran d&apos;accueil.</p>
         </div>
         <button type="button" onClick={installer} className={buttonClass("primary", "sm", "shrink-0")}>

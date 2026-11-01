@@ -112,10 +112,10 @@ export function Sidebar() {
   return (
     <aside className="sticky top-0 hidden h-screen w-rail shrink-0 flex-col border-r border-line bg-background md:flex lg:w-sidebar">
       <div className="flex h-16 items-center justify-center lg:justify-start lg:px-6">
-        <Link href="/" className="font-wide text-xl tracking-tight" aria-label="PyroMarket, accueil">
-          <span className="grid size-10 place-items-center rounded-xl bg-ink text-mint lg:hidden">P</span>
+        <Link href="/" className="font-wide text-xl tracking-tight" aria-label="Manasugu, accueil">
+          <span className="grid size-10 place-items-center rounded-xl bg-ink text-mint lg:hidden">M</span>
           <span className="hidden lg:inline">
-            Pyro<span className="text-accent">Market</span>
+            Mana<span className="text-accent">sugu</span>
           </span>
         </Link>
       </div>
