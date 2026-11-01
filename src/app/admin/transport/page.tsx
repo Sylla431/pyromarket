@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { EmptyState, Segmented } from "@/components/ui";
+import { EmptyState } from "@/components/ui";
+import { Filtres } from "../_components/filtres";
 import { depuis, exigerAdmin, lireDemandes, nomCompte } from "@/lib/admin";
 import { Statut } from "../_components/ui";
 
@@ -21,8 +22,8 @@ export default async function AdminTransport({ searchParams }: PageProps<"/admin
   const liste = statut ? toutes.filter((d) => d.statut === statut) : toutes;
 
   return (
-    <div>
-      <Segmented
+    <div className="rounded-2xl border border-line">
+      <Filtres
         items={VUES.map((v) => ({
           href: v.valeur ? `/admin/transport?statut=${v.valeur}` : "/admin/transport",
           label: v.label,
@@ -31,9 +32,9 @@ export default async function AdminTransport({ searchParams }: PageProps<"/admin
         }))}
       />
 
-      <ul className="mt-5 space-y-3">
+      <ul className="divide-y divide-line">
         {liste.map((d) => (
-          <li key={d.id} className="rounded-2xl border border-line bg-surface/60 p-4">
+          <li key={d.id} className="p-4 transition hover:bg-surface/50">
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div className="min-w-0">
                 <p className="font-medium text-foreground">
@@ -63,9 +64,11 @@ export default async function AdminTransport({ searchParams }: PageProps<"/admin
         ))}
       </ul>
       {liste.length === 0 && (
+        <div className="p-4">
         <EmptyState title="Aucune demande de transport">
           Les demandes apparaîtront ici dès que les vendeurs demanderont un transport depuis leurs annonces.
         </EmptyState>
+        </div>
       )}
     </div>
   );

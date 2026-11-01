@@ -10,16 +10,21 @@ import {
   ExportIcon,
   FlagIcon,
   GearFineIcon,
+  HandshakeIcon,
+  IdentificationCardIcon,
   MagnifyingGlassIcon,
   MapPinIcon,
+  PackageIcon,
   PaperPlaneRightIcon,
   PlusIcon,
   RecycleIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
+  SquaresFourIcon,
   StorefrontIcon,
   TruckIcon,
   UserCircleIcon,
+  UsersThreeIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
@@ -62,3 +67,8 @@ export const IconClock = icone(ClockIcon, "IconClock");
 export const IconClose = icone(XIcon, "IconClose");
 export const IconShare = icone(ExportIcon, "IconShare");
 export const IconRecycle = icone(RecycleIcon, "IconRecycle");
+export const IconDashboard = icone(SquaresFourIcon, "IconDashboard");
+export const IconUsers = icone(UsersThreeIcon, "IconUsers");
+export const IconIdCard = icone(IdentificationCardIcon, "IconIdCard");
+export const IconHandshake = icone(HandshakeIcon, "IconHandshake");
+export const IconPackage = icone(PackageIcon, "IconPackage");

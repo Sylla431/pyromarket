@@ -149,3 +149,61 @@ export { depuis };
 export function depuisMoinsDe(iso: string, jours: number) {
   return Date.now() - new Date(iso).getTime() < jours * 24 * 3600 * 1000;
 }
+
+// Nombre d'évènements par semaine sur les dernières semaines (la plus
+// ancienne en premier), pour les mini-graphiques d'évolution.
+export function serieHebdo(dates: string[], semaines = 8) {
+  const semaineMs = 7 * 24 * 3600 * 1000;
+  const fin = Date.now();
+  const valeurs = Array.from({ length: semaines }, () => 0);
+  for (const iso of dates) {
+    const age = fin - new Date(iso).getTime();
+    const i = Math.floor(age / semaineMs);
+    if (i >= 0 && i < semaines) valeurs[semaines - 1 - i] += 1;
+  }
+  return valeurs.map((valeur, i) => ({
+    label: i === semaines - 1 ? "Cette semaine" : `Il y a ${semaines - 1 - i} sem.`,
+    valeur,
+  }));
+}
+
+// Regroupe une date dans une période lisible pour le fil d'activité.
+export function periode(iso: string) {
+  const jour = 24 * 3600 * 1000;
+  const debutAujourdhui = new Date();
+  debutAujourdhui.setHours(0, 0, 0, 0);
+  const t = new Date(iso).getTime();
+  if (t >= debutAujourdhui.getTime()) return "Aujourd'hui";
+  if (t >= debutAujourdhui.getTime() - jour) return "Hier";
+  if (t >= debutAujourdhui.getTime() - 6 * jour) return "Cette semaine";
+  return "Plus ancien";
+}
+
+// Date courte pour les tableaux : « 3 oct. 2026 ».
+export function dateCourte(iso: string) {
+  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
+}
+
+// Compteurs du menu, en requêtes de comptage (sans charger les lignes).
+export async function compteursNav(supabase: Client) {
+  const compte = (r: { count: number | null; error: { message: string } | null }) => {
+    if (r.error) throw new Error(`Comptage impossible : ${r.error.message}`);
+    return r.count ?? 0;
+  };
+  const [signalements, annonces, utilisateurs, demandes] = await Promise.all([
+    supabase.from("signalements").select("id", { count: "exact", head: true }).eq("statut", "a_traiter"),
+    supabase.from("annonces").select("id", { count: "exact", head: true }),
+    supabase.from("profiles").select("id", { count: "exact", head: true }),
+    supabase.from("demandes_transport").select("id", { count: "exact", head: true }).eq("statut", "en_attente"),
+  ]);
+  return {
+    signalements: compte(signalements),
+    annonces: compte(annonces),
+    utilisateurs: compte(utilisateurs),
+    demandes: compte(demandes),
+  };
+}
+
+export function dateDuJour() {
+  return new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+}

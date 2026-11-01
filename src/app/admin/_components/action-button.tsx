@@ -5,10 +5,10 @@ import { buttonClass } from "@/components/button";
 
 type Variant = "primary" | "secondary" | "danger" | "ghost";
 
-function Bouton({ children, variant }: { children: React.ReactNode; variant: Variant }) {
+function Bouton({ children, variant, titre }: { children: React.ReactNode; variant: Variant; titre?: string }) {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} className={buttonClass(variant, "sm")}>
+    <button type="submit" disabled={pending} title={titre} aria-label={titre} className={buttonClass(variant, "sm", "whitespace-nowrap")}>
       {pending ? "…" : children}
     </button>
   );
@@ -20,12 +20,14 @@ export function ActionButton({
   champs,
   variant = "secondary",
   confirmer,
+  titre,
   children,
 }: {
   action: (formData: FormData) => Promise<void>;
   champs: Record<string, string>;
   variant?: Variant;
   confirmer?: string;
+  titre?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -38,7 +40,9 @@ export function ActionButton({
       {Object.entries(champs).map(([k, v]) => (
         <input key={k} type="hidden" name={k} value={v} />
       ))}
-      <Bouton variant={variant}>{children}</Bouton>
+      <Bouton variant={variant} titre={titre}>
+        {children}
+      </Bouton>
     </form>
   );
 }

@@ -27,10 +27,11 @@ function useIsActive() {
 
 export function TopBar() {
   const isActive = useIsActive();
+  const large = usePathname().startsWith("/admin");
 
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-5xl items-center gap-6 px-4">
+      <div className={`mx-auto flex h-14 items-center gap-6 px-4 ${large ? "max-w-[min(1280px,100vw)] lg:px-6" : "max-w-5xl"}`}>
         <Link href="/" className="font-wide text-lg font-bold tracking-tight">
           Pyro<span className="text-accent">Market</span>
         </Link>

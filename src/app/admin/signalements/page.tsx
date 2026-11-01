@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { EmptyState, Pill, Segmented } from "@/components/ui";
+import { EmptyState, Pill } from "@/components/ui";
+import { Filtres } from "../_components/filtres";
 import { traiterSignalement } from "@/lib/admin-actions";
 import { depuis, exigerAdmin, lireSignalements, nomCompte } from "@/lib/admin";
 import { ActionButton } from "../_components/action-button";
@@ -15,8 +16,8 @@ export default async function AdminSignalements({ searchParams }: PageProps<"/ad
   const liste = vue === "a_traiter" ? aTraiter : tous.filter((s) => s.statut !== "a_traiter");
 
   return (
-    <div>
-      <Segmented
+    <div className="rounded-2xl border border-line">
+      <Filtres
         items={[
           { href: "/admin/signalements", label: "À traiter", active: vue === "a_traiter", count: aTraiter.length },
           {
@@ -28,11 +29,11 @@ export default async function AdminSignalements({ searchParams }: PageProps<"/ad
         ]}
       />
 
-      <ul className="mt-5 space-y-3">
+      <ul className="divide-y divide-line">
         {liste.map((s) => {
           const cible = s.cible_type === "annonce" ? `/annonces/${s.cible_id}` : `/broyeurs/${s.cible_id}`;
           return (
-            <li key={s.id} className="rounded-2xl border border-line bg-surface/60 p-4">
+            <li key={s.id} className="p-4 transition hover:bg-surface/50">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <p className="font-medium text-foreground">{s.motif}</p>
                 <div className="flex gap-1.5">
@@ -77,9 +78,11 @@ export default async function AdminSignalements({ searchParams }: PageProps<"/ad
         })}
       </ul>
       {liste.length === 0 && (
+        <div className="p-4">
         <EmptyState title={vue === "a_traiter" ? "Aucun signalement à traiter" : "Aucun signalement traité"}>
           {vue === "a_traiter" ? "Les signalements des utilisateurs arrivent ici." : undefined}
         </EmptyState>
+        </div>
       )}
     </div>
   );
