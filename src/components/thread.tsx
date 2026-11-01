@@ -76,7 +76,7 @@ export function Thread({ initial }: { initial: Message[] }) {
 
       <form
         onSubmit={envoyer}
-        className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-background/95 px-4 py-3 backdrop-blur md:bottom-0"
+        className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-background/95 px-4 py-3 backdrop-blur md:bottom-0 lg:left-sidebar"
       >
         <div className="mx-auto flex max-w-3xl gap-2">
           <label className="flex-1">

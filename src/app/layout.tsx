@@ -5,6 +5,7 @@ import "./globals.css";
 import { RegisterServiceWorker } from "@/components/register-service-worker";
 import { BottomNav, TopBar } from "@/components/nav";
 import { InstallBanner } from "@/components/install-app";
+import { Sidebar } from "@/components/sidebar";
 
 const hyperlegible = localFont({
   variable: "--font-hyperlegible",
@@ -48,12 +49,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${hyperlegible.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <body className="flex min-h-full flex-col bg-background text-foreground lg:flex-row">
         <RegisterServiceWorker />
-        <TopBar />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 pt-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pt-8 md:pb-16">
-          {children}
-        </main>
+        <Sidebar />
+        <div className="flex min-w-0 flex-1 flex-col">
+          <TopBar />
+          <main className="mx-auto w-full max-w-5xl flex-1 px-4 pt-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pt-8 md:pb-16 lg:px-8 lg:pt-10">
+            {children}
+          </main>
+        </div>
         <BottomNav />
         <InstallBanner />
       </body>

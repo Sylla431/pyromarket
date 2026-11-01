@@ -19,45 +19,12 @@ function useActif() {
   return (href: string) => (href === "/admin" ? pathname === "/admin" : pathname.startsWith(href));
 }
 
-// Menu latéral sur grand écran, onglets défilants sur mobile.
+// Onglets du tableau de bord sous 1024 px ; au-delà, le menu latéral du
+// site affiche les sections d'administration.
 export function AdminNav({ compteurs }: { compteurs: Compteurs }) {
   const actif = useActif();
 
   return (
-    <>
-      <nav aria-label="Administration" className="hidden lg:block">
-        <ul className="sticky top-20 space-y-1">
-          {ENTREES.map(({ href, label, Icon, cle }) => {
-            const on = actif(href);
-            const n = cle ? compteurs[cle] : null;
-            const alerte = cle === "signalements" && (n ?? 0) > 0;
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  aria-current={on ? "page" : undefined}
-                  className={`flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium transition ${
-                    on ? "bg-mint/20 text-accent" : "text-soft hover:bg-surface hover:text-foreground"
-                  }`}
-                >
-                  <Icon size={20} weight={on ? "fill" : "regular"} />
-                  <span className="flex-1">{label}</span>
-                  {n !== null && (
-                    <span
-                      className={`grid min-w-6 place-items-center rounded-full px-1.5 font-mono text-[11px] leading-5 ${
-                        alerte ? "bg-coral text-white" : "bg-surface text-subtle"
-                      }`}
-                    >
-                      {n}
-                    </span>
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-
       <nav aria-label="Administration" className="scrollbar-none -mx-4 mb-6 flex gap-1 overflow-x-auto border-b border-line px-4 lg:hidden">
         {ENTREES.map(({ href, label, cle }) => {
           const on = actif(href);
@@ -81,6 +48,5 @@ export function AdminNav({ compteurs }: { compteurs: Compteurs }) {
           );
         })}
       </nav>
-    </>
   );
 }
