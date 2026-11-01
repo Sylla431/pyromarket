@@ -110,8 +110,10 @@ export function Sidebar() {
   const dansAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-rail shrink-0 flex-col border-r border-line bg-background md:flex lg:w-sidebar">
-      <div className="flex h-16 items-center justify-center lg:justify-start lg:px-6">
+    <aside className="sticky top-0 hidden h-screen w-rail shrink-0 p-3 md:block lg:w-sidebar">
+      {/* Panneau flottant : décollé des bords, coins arrondis, ombre douce. */}
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-background shadow-[0_12px_40px_-12px_rgba(2,31,40,0.22)]">
+      <div className="flex h-16 items-center justify-center lg:justify-start lg:px-5">
         <Link href="/" className="font-wide text-xl tracking-tight" aria-label="Manasugu, accueil">
           <span className="grid size-10 place-items-center rounded-xl bg-ink text-mint lg:hidden">M</span>
           <span className="hidden lg:inline">
@@ -120,7 +122,7 @@ export function Sidebar() {
         </Link>
       </div>
 
-      <div className="px-3 pb-4 lg:px-4">
+      <div className="px-2.5 pb-4 lg:px-3">
         <Link
           href="/publier"
           title="Publier"
@@ -130,7 +132,7 @@ export function Sidebar() {
         </Link>
       </div>
 
-      <nav aria-label="Principale" className="flex-1 overflow-y-auto px-3 lg:px-4">
+      <nav aria-label="Principale" className="flex-1 overflow-y-auto px-2.5 lg:px-3">
         <ul className="space-y-1">
           {PRINCIPAL.map((e) => (
             <li key={e.href}>
@@ -160,7 +162,7 @@ export function Sidebar() {
         )}
       </nav>
 
-      <div className="border-t border-line p-3 lg:p-4">
+      <div className="border-t border-line p-2.5 lg:p-3">
         {compte ? (
           <Link
             href="/compte"
@@ -198,6 +200,7 @@ export function Sidebar() {
             <span className="hidden h-3 w-24 rounded bg-surface lg:block" />
           </div>
         )}
+      </div>
       </div>
     </aside>
   );

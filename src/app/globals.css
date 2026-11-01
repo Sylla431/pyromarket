@@ -28,9 +28,10 @@
   --color-subtle: #5e767c;
 
   /* Menu latéral : réduit aux icônes de 768 à 1024 px (rail), complet
-     au-delà (sidebar). Utilitaires : w-rail, w-sidebar, left-sidebar… */
-  --spacing-rail: 76px;
-  --spacing-sidebar: 248px;
+     au-delà (sidebar), marges du panneau flottant comprises.
+     Utilitaires : w-rail, w-sidebar, left-sidebar… */
+  --spacing-rail: 88px;
+  --spacing-sidebar: 264px;
 
   --font-sans: var(--font-hyperlegible);
   --font-mono: var(--font-geist-mono);
